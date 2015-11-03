@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="../../vendor/metisMenu/dist/metisMenu.css" />
     <link rel="stylesheet" href="../../vendor/animate.css/animate.css" />
     <link rel="stylesheet" href="../../vendor/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../vendor/alert/sweetalert.css" />
 
     <!-- App styles -->
     <link rel="stylesheet" href="../../fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
@@ -50,19 +51,19 @@
             </div>
             <div class="hpanel">
                 <div class="panel-body">
-                        <form id="loginForm">
-                            <div class="form-group">
-                                <label class="control-label" for="username">Nombre de Usuario</label>
-                                <input type="text" placeholder="example@gmail.com" title="Por favor, Ingrese su usuario" required="" name="txt_username" id="txt_username" class="form-control">
-                                <span class="help-block small">Tu nombre de usuario única de aplicación</span>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="password">Password</label>
-                                <input type="password" title="porfavor ingrese su password / contraseña" placeholder="******" required=""name="txt_password" id="txt_password" class="form-control">
-                                <span class="help-block small">Su contraseña segura</span>
-                            </div>
-                            <button class="btn btn-success btn-block" name="btn_entrar" id="btn_entrar">Entrar</button>
-                        </form>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label class="control-label" for="username">Nombre de Usuario</label>
+                            <input type="text" placeholder="nombre de usuario" title="Por favor, Ingrese su usuario" required="" name="txt_username" id="txt_username" class="form-control">
+                            <span class="help-block small">Tu nombre de usuario única de aplicación</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="password">Password</label>
+                            <input type="password" title="porfavor ingrese su password / contraseña" placeholder="******" required=""name="txt_password" id="txt_password" class="form-control">
+                            <span class="help-block small">Su contraseña segura</span>
+                        </div>
+                        <button class="btn btn-success btn-block" name="btn_entrar" id="btn_entrar">Entrar</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -83,6 +84,7 @@
 <script src="../../vendor/metisMenu/dist/metisMenu.min.js"></script>
 <script src="../../vendor/iCheck/icheck.min.js"></script>
 <script src="../../vendor/sparkline/index.js"></script>
+<script src="../../vendor/alert/sweetalert.min.js"></script>
 
 <!-- App scripts -->
 <script src="../../scripts/homer.js"></script>

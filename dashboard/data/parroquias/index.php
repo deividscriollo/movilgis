@@ -28,6 +28,7 @@ if(!isset($_SESSION))
     <link rel="stylesheet" href="../../vendor/metisMenu/dist/metisMenu.css" />
     <link rel="stylesheet" href="../../vendor/animate.css/animate.css" />
     <link rel="stylesheet" href="../../vendor/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.css" />
 
     <!-- App styles -->
     <link rel="stylesheet" href="../../fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
@@ -132,19 +133,40 @@ if(!isset($_SESSION))
 
     <div class="content animate-panel">
         <div class="row">
-            <div class="col-lg-12 text-center m-t-md">
-                <h2>
-                    Bienvenidos al,
-                </h2>
+            <div class="col-sm-3">
 
-                <p>
-                    GEOPORTAL DE ATRACTIVOS TURÍSTICOS DE COTACACHI.
-                </p>
+            </div>
+            <div class="col-sm-9">
+                <table id="tabla-info" class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nro</th>
+                            <th>Parroquia</th>
+                            <th>Stado</th>
+                            <th>Fecha</th>
+                            <th>Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>System Architect</td>
+                            <td>Edinburgh</td>
+                            <td>61</td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-outline btn-info btn-xs"><i class="fa fa-check-square-o"></i></button>
+                                <button type="button" class="btn btn-outline btn-warning2 btn-xs"><i class="fa fa-minus-square"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
     <!-- Right sidebar -->
+
+
     <!-- Footer-->
     <footer class="footer">
         <span class="pull-right">
@@ -169,10 +191,13 @@ if(!isset($_SESSION))
 <script src="../../vendor/iCheck/icheck.min.js"></script>
 <script src="../../vendor/peity/jquery.peity.min.js"></script>
 <script src="../../vendor/sparkline/index.js"></script>
+<script src="../../vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="../../vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
 <!-- App scripts -->
 <script src="../../scripts/homer.js"></script>
 <script src="../../scripts/charts.js"></script>
+<script src="app.js"></script>
 </body>
 
 <!-- Mirrored from webapplayers.com/homer_admin-v1.8/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Oct 2015 09:57:42 GMT -->
