@@ -43,12 +43,10 @@ class menu
 				                <ul class="nav nav-second-level">
 				                    <li><a href="../parroquias/">Parroquias</a></li>
 				                    <li><a href="../clima/">Clima</a></li>
-
-				                    <li><a href="../tipo_lugares">Tipo Lugares Turísticos</a></li>
-				                    <li><a href="../lugares_turisticos/">Lugares Turisticos</a></li>
-				                    
-				                    <li><a href="icons.html">Establecimientos</a></li>
-				                    <li><a href="icons.html">Tipo de Establecimientos</a></li>
+				                    <li><a href="../tipo_lugares">Tipo Lugares Turí..</a></li>
+				                    <li><a href="../lugares_turisticos/">Lugares Turisticos</a></li>				                    
+				                    <li><a href="../tipo_establecimiento/">Tipo de Estable...</a></li>
+				                    <li><a href="../establecimiento/">Establecimientos</a></li>
 				                </ul>
 				            </li>
 				        </ul>

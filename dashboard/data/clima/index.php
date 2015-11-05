@@ -141,14 +141,14 @@ if(!isset($_SESSION))
                             <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             <a class="closebox"><i class="fa fa-times"></i></a>
                         </div>
-                        Formulario Parroquia
+                        Formulario Clima
                     </div>
                     <div class="panel-body">
                         <form class="form-horizontal" id="form-data">
                             <div class="form-group">
-                                <label class="col-sm-12 control-label">Nombre Parroquia</label>
+                                <label class="col-sm-12 control-label">Nombre Clima</label>
                                 <div class="col-sm-12">
-                                    <input type="text" id="txt_1" name="txt_1" class="form-control" placeholder="Nombre parroquia">
+                                    <input type="text" id="txt_1" name="txt_1" class="form-control" placeholder="Nombre Clima">
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -166,7 +166,7 @@ if(!isset($_SESSION))
                     <thead>
                         <tr>
                             <th>Nro</th>
-                            <th>Parroquia</th>
+                            <th>Clima</th>
                             <th>Accion</th>
                         </tr>
                     </thead>
@@ -189,8 +189,8 @@ if(!isset($_SESSION))
                     <table class="table table-bordered table-striped" style="clear: both">
                         <tbody>
                         <tr>
-                            <td width="35%">Parroquia</td>
-                            <td width="65%"><a href="" id="username" class="editable editable-click">superuser</a></td>
+                            <td width="35%">Clima</td>
+                            <td width="65%"><a href="" id="username" class="editable editable-click">clima</a></td>
                         </tr>
                         </tbody>
                     </table>

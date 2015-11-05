@@ -39,7 +39,6 @@ $(function(){
 		    }
 		},
         submitHandler: function(form) {
-        	llenar_tabla();
         	$.ajax({
 	    		url: 'app.php',
 	    		type: 'post',

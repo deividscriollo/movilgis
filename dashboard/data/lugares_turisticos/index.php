@@ -35,6 +35,7 @@ if(!isset($_SESSION))
     <link rel="stylesheet" href="../../fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="../../fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="../../styles/style.css">
+    <link rel="stylesheet" href="../../styles/jquery-filestyle.min.css">
 
 </head>
 <body>
@@ -134,26 +135,129 @@ if(!isset($_SESSION))
 
     <div class="content animate-panel">
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-12">
                 <div class="hpanel">
                     <div class="panel-heading">
                         <div class="panel-tools">
                             <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             <a class="closebox"><i class="fa fa-times"></i></a>
                         </div>
-                        Formulario Parroquia
+                        Formulario Lugar turístico
                     </div>
                     <div class="panel-body">
-                        <form class="form-horizontal" id="form-data">
-                            <div class="form-group">
-                                <label class="col-sm-12 control-label">Nombre Parroquia</label>
-                                <div class="col-sm-12">
-                                    <input type="text" id="txt_1" name="txt_1" class="form-control" placeholder="Nombre parroquia">
+                        <form class="form-horizontal" id="form-data" enctype='multipart/form-data'>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">Nombre Lugar turístico</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" id="txt_1" name="txt_1" class="form-control" placeholder="Nombre Lugar turístico">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">Gerencia/Propietario</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" id="txt_2" name="txt_2" class="form-control" placeholder="Gerencia/Propietarios">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">Dirección</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" id="txt_3" name="txt_3" class="form-control" placeholder="Dirección">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="hr-line-dashed"></div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">Latitud-Longitud</label>
+                                        <div class="col-sm-12">
+                                            <div class="input-group">
+                                                <input type="text" id="txt_4" name="txt_4" placeholder="Latirud-Longitud" class="form-control">
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-map">Buscar <i class="fa fa-search"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">Teléfono</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" id="txt_5" name="txt_5" class="form-control" placeholder="Teléfono">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">Correo</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" id="txt_6" name="txt_6" class="form-control" placeholder="Correo electrónico">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">Sitio Web</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" id="txt_7" name="txt_7" class="form-control" placeholder="Sitio Web">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">Clima</label>
+                                        <div class="col-sm-12">
+                                            <select class="form-control m-b" id="sel_8" name="sel_8"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">Descripción</label>
+                                        <div class="col-sm-12">
+                                        <textarea rows="1" cols="50" class="form-control" id="txt_9" name="txt_9" placeholder="Sitio Web"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                     <div class="form-group">
+                                        <label class="col-sm-12 control-label">Descripción</label>
+                                        <div class="col-sm-12">
+                                        <input type='file' name='txt_x' id="txt_x" multiple />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">Tipo</label>
+                                        <div class="col-sm-12">
+                                            <select class="form-control m-b" id="sel_10" name="sel_10"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">Parroquia</label>
+                                        <div class="col-sm-12">
+                                            <select class="form-control m-b" id="sel_11" name="sel_11"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group">
-                                <div class="col-sm-12">
+                                <div class="col-sm-12 text-center">
                                     <button class="btn w-xs btn-info" type="submit" name="btn_guardar">Guardar</button>
                                 </div>
                             </div>
@@ -161,12 +265,22 @@ if(!isset($_SESSION))
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8">
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
                 <table id="tabla-info" class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>Nro</th>
-                            <th>Parroquia</th>
+                            <th>Lugar turístico</th>
+                            <th>Gerencia/Propietario</th>
+                            <th>Direccion</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                            <th>Sitio Web</th>
+                            <th>Clima</th>
+                            <th>Descripcion</th>
+                            <th>Tipo</th>
+                            <th>PArroquia</th>
                             <th>Accion</th>
                         </tr>
                     </thead>
@@ -189,7 +303,7 @@ if(!isset($_SESSION))
                     <table class="table table-bordered table-striped" style="clear: both">
                         <tbody>
                         <tr>
-                            <td width="35%">Parroquia</td>
+                            <td width="35%">Lugar turístico</td>
                             <td width="65%"><a href="" id="username" class="editable editable-click">superuser</a></td>
                         </tr>
                         </tbody>
@@ -198,6 +312,15 @@ if(!isset($_SESSION))
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal-map" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="color-line"></div>
+                    <div id="map1" style="height: 200px"></div>
+                <div class="color-line"></div>
             </div>
         </div>
     </div>
@@ -231,10 +354,15 @@ if(!isset($_SESSION))
 <script src="../../vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 <script src="../../vendor/jquery-validation/jquery.validate.min.js"></script>
 <script src="../../vendor/alert/sweetalert.min.js"></script>
+<script src="../../vendor/jQuery-Mask-Plugin/jquery.mask.min.js"></script>
+
 
 <!-- App scripts -->
 <script src="../../scripts/homer.js"></script>
 <script src="../../scripts/charts.js"></script>
+<script src="../../scripts/jquery-filestyle.min.js"></script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQTpXj82d8UpCi97wzo_nKXL7nYrd4G70"></script>
 <script src="app.js"></script>
 </body>
 

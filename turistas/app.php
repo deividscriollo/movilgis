@@ -76,7 +76,7 @@
 		}
 		$resultado = $class->consulta("INSERT INTO cliente.turista VALUES ('$id', '$_POST[txt_nombre]', '$_POST[txt_correo]', '$localizacion', '$_POST[txt_tel]', '$_POST[txt_direccion]', '0', '$fecha');");
 		$resultado = $class->consulta("INSERT INTO cliente.acceso_turista    VALUES ('$id1', '$id', '$_POST[txt_correo]', md5('$_POST[txt_pass]'), '0', '$fecha');");
-		confirmacion_registro('deividscriollo@gmail.com', $id);
+		confirmacion_registro($_POST['txt_correo'], $id);
 		$acu[0]=1;
 		if (!$resultado) {
 			$acu[0]=0;//informacion NO almacenada

@@ -75,7 +75,27 @@ $(function(){
     });
 	
 	llenar_tabla();
+
+
+	//-------------------------------inicio map--------------------------//
+	initMap()
+	function initMap() {
+	  // Create a map object and specify the DOM element for display.
+	  var map = new google.maps.Map(document.getElementById('map1'), {
+	    center: {lat: -34.397, lng: 150.644},
+	    scrollwheel: false,
+	    zoom: 8
+	  });
+	}
+
+	$("#txt_x").jfilestyle({buttonText: "<span class='glyphicon glyphicon-folder-open'></span> Seleccionar"});
+
+
+
+
+	llenar_clima()
 });
+
 function llenar_tabla(){
     	$.ajax({
     		url:'app.php',
@@ -86,13 +106,21 @@ function llenar_tabla(){
     			var t = $('#tabla-info').DataTable();
 					t.clear().draw();
     			var counter = 1;
-    			for (var i = 0; i < data.length; i=i+2) {
+    			for (var i = 0; i < data.length; i=i+11) {
     				t.row.add( [
-    					counter,
 			            data[0+i],
 			            data[1+i],
 			            data[2+i],
 			            data[3+i],
+			            data[4+i],
+			            data[5+i],
+			            data[6+i],
+			            data[7+i],
+			            data[8+i],
+			            data[9+i],
+			            data[10+i],
+			            data[11+i],
+
         			] ).draw();
         			counter++;
     			}
@@ -157,5 +185,31 @@ function eliminar(id){
 			}
 		});
 		
+	});
+}
+function llenar_clima(){
+	$.ajax({
+		url: 'app.php',
+		type: 'post',
+		data: {mostrar_clima:''},
+		success: function (data) {
+			$('#sel_8').html(data)
+		}
+	});
+	$.ajax({
+		url: 'app.php',
+		type: 'post',
+		data: {mostrar_tipo:''},
+		success: function (data) {
+			$('#sel_10').html(data)
+		}
+	});
+	$.ajax({
+		url: 'app.php',
+		type: 'post',
+		data: {mostrar_parroquia:''},
+		success: function (data) {
+			$('#sel_11').html(data)
+		}
 	});
 }
