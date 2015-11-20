@@ -31,6 +31,7 @@ if(!isset($_SESSION))
     <link rel="stylesheet" href="../dashboard/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="../dashboard/fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="../dashboard/styles/style.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.14/esri/css/esri.css">
 
 </head>
 <body class="blank">
@@ -114,6 +115,7 @@ if(!isset($_SESSION))
 <script src="../dashboard/vendor/jquery-validation/jquery.validate.min.js"></script>
 <script src="../dashboard/vendor/jQuery-Mask-Plugin/jquery.mask.min.js"></script>
 <script src="../dashboard/vendor/alert/sweetalert.min.js"></script>
+<script src="http://js.arcgis.com/3.14/"></script>
 <!-- App scripts -->
 <script src="../dashboard/scripts/homer.js"></script>
 <script src="app.js"></script>

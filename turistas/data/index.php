@@ -29,6 +29,7 @@ if(!isset($_SESSION))
     <link rel="stylesheet" href="../../dashboard/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="../../dashboard/fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="../../dashboard/styles/style.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.14/esri/css/esri.css">
 
 </head>
 <body>
@@ -118,55 +119,12 @@ if(!isset($_SESSION))
 <script src="../../dashboard/vendor/iCheck/icheck.min.js"></script>
 <script src="../../dashboard/vendor/sparkline/index.js"></script>
 <script src="../../dashboard/vendor/peity/jquery.peity.min.js"></script>
-
+<script src="http://js.arcgis.com/3.14/"></script>
 <!-- App scripts -->
 <script src="../../dashboard/scripts/homer.js"></script>
 <script src="../../dashboard/scripts/charts.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQTpXj82d8UpCi97wzo_nKXL7nYrd4G70"></script>
-<script>
 
-    // When the window has finished loading google map
-    // google.maps.event.addDomListener(window, 'load', init);
-    var locations = [ 
-      ['"La Laguna de Cuicocha"', 0.303755, -78.363590, 4],
-      ['Apuela', 0.357522, -78.511496, 5],
-      ['Cotacachi',0.307069, -78.264974, 3],
-      ['Gualiman', 0.334237, -78.542979, 2],
-      ['Cabañas Intag', 0.328572, -78.549159, 1]
-    ];
-    var map = new google.maps.Map(document.getElementById('map1'), {
-      zoom: 11,
-      center: new google.maps.LatLng(0.301415, -78.265700),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
-
-    var infowindow = new google.maps.InfoWindow();
-
-    var marker, i;
-
-    for (i = 0; i < locations.length; i++) {  
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map
-      });
-
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          infowindow.setContent(locations[i][0]);
-          infowindow.open(map, marker);
-        }
-      })(marker, i));
-    }
-
-
-
-</script>
+<script src="app.js"></script>
 </body>
 
 </html>
-
-<style type="text/css">
-    #map {
-        height: 100%;
-      }
-</style>

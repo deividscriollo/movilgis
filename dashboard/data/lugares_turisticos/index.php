@@ -21,9 +21,9 @@ if(!isset($_SESSION))
     <title>Home - Admin</title>
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" ew-->
 
-    <!-- Vendor styles -->
+    <!--Vendor styles -->
     <link rel="stylesheet" href="../../vendor/fontawesome/css/font-awesome.css" />
     <link rel="stylesheet" href="../../vendor/metisMenu/dist/metisMenu.css" />
     <link rel="stylesheet" href="../../vendor/animate.css/animate.css" />
@@ -36,6 +36,9 @@ if(!isset($_SESSION))
     <link rel="stylesheet" href="../../fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="../../styles/style.css">
     <link rel="stylesheet" href="../../styles/jquery-filestyle.min.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.14/esri/css/esri.css">
+    
+    
 
 </head>
 <body>
@@ -233,7 +236,7 @@ if(!isset($_SESSION))
                             <div class="row">
                                 <div class="col-sm-4">
                                      <div class="form-group">
-                                        <label class="col-sm-12 control-label">Descripción</label>
+                                        <label class="col-sm-12 control-label">Fotografía</label>
                                         <div class="col-sm-12">
                                         <input type='file' name='txt_x' id="txt_x" multiple />
                                         </div>
@@ -355,6 +358,7 @@ if(!isset($_SESSION))
 <script src="../../vendor/jquery-validation/jquery.validate.min.js"></script>
 <script src="../../vendor/alert/sweetalert.min.js"></script>
 <script src="../../vendor/jQuery-Mask-Plugin/jquery.mask.min.js"></script>
+<script src="http://js.arcgis.com/3.14/"></script>
 
 
 <!-- App scripts -->
@@ -362,7 +366,6 @@ if(!isset($_SESSION))
 <script src="../../scripts/charts.js"></script>
 <script src="../../scripts/jquery-filestyle.min.js"></script>
 
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQTpXj82d8UpCi97wzo_nKXL7nYrd4G70"></script>
 <script src="app.js"></script>
 </body>
 

@@ -78,15 +78,33 @@ $(function(){
 
 
 	//-------------------------------inicio map--------------------------//
-	initMap()
-	function initMap() {
-	  // Create a map object and specify the DOM element for display.
-	  var map = new google.maps.Map(document.getElementById('map1'), {
-	    center: {lat: -34.397, lng: 150.644},
-	    scrollwheel: false,
-	    zoom: 8
-	  });
-	}
+	var map;
+      require([
+        "esri/map", "esri/geometry/webMercatorUtils", "dojo/dom", 
+        "dojo/domReady!"
+      ], function(
+        Map, webMercatorUtils, dom
+      ) {
+        map = new Map("map1", {
+			center: [-78.216, 0.328],
+			zoom: 12,
+			basemap: "streets",
+			logo:false
+        });
+        map.on("load", function() {
+          //after map loads, connect to listen to mouse move & drag events
+          map.on("mouse-move", showCoordinates);
+          map.on("mouse-drag", showCoordinates);
+        });
+
+        function showCoordinates(evt) {
+          //the map is in web mercator but display coordinates in geographic (lat, long)
+          var mp = webMercatorUtils.webMercatorToGeographic(evt.mapPoint);
+          //display mouse coordinates
+          dom.byId("info").innerHTML = mp.x.toFixed(3) + ", " + mp.y.toFixed(3);
+        }
+      });
+
 
 	$("#txt_x").jfilestyle({buttonText: "<span class='glyphicon glyphicon-folder-open'></span> Seleccionar"});
 
