@@ -12,7 +12,7 @@
 									       descripcion, 
 									       (SELECT upper(tipo) FROM tipo_lugar_turistico WHERE id=id_tipo_lugar_turistico), 
 									       (SELECT upper(nom) FROM parroquias WHERE id=id_parroquia)
-										FROM lugar_turistico;");
+										FROM lugar_turistico WHERE lugar_turistico.STADO='1';");
 		while ($row=$class->fetch_array($resultado)) {	
 			$data[]=$row[1];
 			$data[]=$row[2];
@@ -106,5 +106,14 @@
 			$acu[0]=0;// actualizado
 		}
 	}
+	if (isset($_POST['verificar_existencia_value'])) {
+		$resultado = $class->consulta("SELECT nombre FROM lugar_turistico WHERE upper(NOMBRE)=upper('$_POST[txt_1]') AND STADO='1';");
+		$acu='true';
+		if ($class->fetch_array($resultado)>0) {
+			$acu='false';
+		}
+		print $acu;
+	}
+	
 ?>
 

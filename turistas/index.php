@@ -31,6 +31,8 @@ if(!isset($_SESSION))
     <link rel="stylesheet" href="../dashboard/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="../dashboard/fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="../dashboard/styles/style.css">
+    <link rel="stylesheet" href="app.css">
+
     <link rel="stylesheet" href="http://js.arcgis.com/3.14/esri/css/esri.css">
 
 </head>

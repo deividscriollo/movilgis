@@ -145,14 +145,14 @@ if(!isset($_SESSION))
                             <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             <a class="closebox"><i class="fa fa-times"></i></a>
                         </div>
-                        Formulario Lugar turístico
+                        Formulario Lugar turístico / <small>todos los campos marcados con (*) son obligatorios</small>
                     </div>
                     <div class="panel-body">
                         <form class="form-horizontal" id="form-data" enctype='multipart/form-data'>
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-sm-12 control-label">Nombre Lugar turístico</label>
+                                        <label class="col-sm-12 control-label">Nombre Lugar turístico (*)</label>
                                         <div class="col-sm-12">
                                             <input type="text" id="txt_1" name="txt_1" class="form-control" placeholder="Nombre Lugar turístico">
                                         </div>
@@ -160,7 +160,7 @@ if(!isset($_SESSION))
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-sm-12 control-label">Gerencia/Propietario</label>
+                                        <label class="col-sm-12 control-label">Gerencia/Propietario (*)</label>
                                         <div class="col-sm-12">
                                             <input type="text" id="txt_2" name="txt_2" class="form-control" placeholder="Gerencia/Propietarios">
                                         </div>
@@ -168,7 +168,7 @@ if(!isset($_SESSION))
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-sm-12 control-label">Dirección</label>
+                                        <label class="col-sm-12 control-label">Dirección (*)</label>
                                         <div class="col-sm-12">
                                             <input type="text" id="txt_3" name="txt_3" class="form-control" placeholder="Dirección">
                                         </div>
@@ -178,7 +178,7 @@ if(!isset($_SESSION))
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-sm-12 control-label">Latitud-Longitud</label>
+                                        <label class="col-sm-12 control-label">Latitud-Longitud (*)</label>
                                         <div class="col-sm-12">
                                             <div class="input-group">
                                                 <input type="text" id="txt_4" name="txt_4" placeholder="Latirud-Longitud" class="form-control">
@@ -191,7 +191,7 @@ if(!isset($_SESSION))
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-sm-12 control-label">Teléfono</label>
+                                        <label class="col-sm-12 control-label">Teléfono (*)</label>
                                         <div class="col-sm-12">
                                             <input type="text" id="txt_5" name="txt_5" class="form-control" placeholder="Teléfono">
                                         </div>
@@ -199,7 +199,7 @@ if(!isset($_SESSION))
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-sm-12 control-label">Correo</label>
+                                        <label class="col-sm-12 control-label">Correo (*)</label>
                                         <div class="col-sm-12">
                                             <input type="text" id="txt_6" name="txt_6" class="form-control" placeholder="Correo electrónico">
                                         </div>
@@ -218,7 +218,7 @@ if(!isset($_SESSION))
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-sm-12 control-label">Clima</label>
+                                        <label class="col-sm-12 control-label">Clima (*)</label>
                                         <div class="col-sm-12">
                                             <select class="form-control m-b" id="sel_8" name="sel_8"></select>
                                         </div>
@@ -236,15 +236,15 @@ if(!isset($_SESSION))
                             <div class="row">
                                 <div class="col-sm-4">
                                      <div class="form-group">
-                                        <label class="col-sm-12 control-label">Fotografía</label>
+                                        <label class="col-sm-12 control-label">Fotografías</label>
                                         <div class="col-sm-12">
-                                        <input type='file' name='txt_x' id="txt_x" multiple />
+                                        <input type='file' name='txt_x' id="txt_x" multiple/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-sm-12 control-label">Tipo</label>
+                                        <label class="col-sm-12 control-label">Tipo (*)</label>
                                         <div class="col-sm-12">
                                             <select class="form-control m-b" id="sel_10" name="sel_10"></select>
                                         </div>
@@ -252,7 +252,7 @@ if(!isset($_SESSION))
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-sm-12 control-label">Parroquia</label>
+                                        <label class="col-sm-12 control-label">Parroquia (*)</label>
                                         <div class="col-sm-12">
                                             <select class="form-control m-b" id="sel_11" name="sel_11"></select>
                                         </div>
@@ -271,25 +271,34 @@ if(!isset($_SESSION))
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <table id="tabla-info" class="table table-striped table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Lugar turístico</th>
-                            <th>Gerencia/Propietario</th>
-                            <th>Direccion</th>
-                            <th>Teléfono</th>
-                            <th>Email</th>
-                            <th>Sitio Web</th>
-                            <th>Clima</th>
-                            <th>Descripcion</th>
-                            <th>Tipo</th>
-                            <th>PArroquia</th>
-                            <th>Accion</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                <div class="hpanel">
+                    <div class="panel-heading">
+                        <div class="panel-tools">
+                            <a class="showhide"><i class="fa fa-chevron-down"></i></a>
+                            <a class="closebox"><i class="fa fa-times"></i></a>
+                        </div>
+                        Formulario Lugar turístico / <small>todos los campos marcados con (*) son obligatorios</small>
+                    </div>
+                    <div class="panel-body" style="display: none;">
+                        <table id="tabla-info" class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Lugar turístico</th>
+                                    <th>Gerencia/Propietario</th>
+                                    <th>Direccion</th>
+                                    <th>Teléfono</th>
+                                    <th>Email</th>
+                                    <th>Clima</th>
+                                    <th>Tipo</th>
+                                    <th>PArroquia</th>
+                                    <th>Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -322,7 +331,7 @@ if(!isset($_SESSION))
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="color-line"></div>
-                    <div id="map1" style="height: 200px"></div>
+                    <div id="map1" style="height: 350px"></div>
                 <div class="color-line"></div>
             </div>
         </div>

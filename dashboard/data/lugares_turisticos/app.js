@@ -31,12 +31,77 @@ $(function(){
         rules: {
             txt_1: {
                 required: true,
-            }
+                remote: {
+			        url: "app.php",
+			        type: "post",
+			        data: {verificar_existencia_value:''}
+			    }
+            },
+            txt_2: {
+                required: true,
+            },
+            txt_3: {
+                required: true,
+            },
+            txt_4: {
+                required: true,
+            },
+            txt_5: {
+                required: true,
+                number: true
+            },
+            txt_6: {
+                required: true,
+                email:true
+            },
+            txt_7: {
+                url:true
+            },
+            sel_8: {
+                required: true,
+            },
+            sel_10: {
+                required: true,
+            },
+            sel_11: {
+                required: true,
+            },
         },
 		messages: {
 		    txt_1: {
+		        required: "Por favor ingrese información, campo requerido",
+		        remote: "Ya existe, ingrese otro"
+		    },
+		    txt_2: {
 		        required: "Por favor ingrese información, campo requerido"
-		    }
+		    },
+		    txt_3: {
+		        required: "Por favor ingrese información, campo requerido"
+		    },
+		    txt_4: {
+		        required: "Por favor ingrese información, campo requerido"
+		    },
+		    txt_5: {
+		        required: "Por favor ingrese información, campo requerido",
+		        number: 'Ingrse solo números'
+		    },
+		    txt_6: {
+		        required: "Por favor ingrese información, campo requerido",
+		        email:'correo electrónico no valido'
+		    },
+		    txt_7: {
+		        url:'Dirección url no valido'
+		    },
+		    sel_8: {
+		        required: "Por favor ingrese información, campo requerido"
+		    },
+		    sel_10: {
+		        required: "Por favor ingrese información, campo requerido"
+		    },
+		    sel_11: {
+		        required: "Por favor ingrese información, campo requerido"
+		    },
+
 		},
         submitHandler: function(form) {
         	llenar_tabla();
@@ -108,9 +173,6 @@ $(function(){
 
 	$("#txt_x").jfilestyle({buttonText: "<span class='glyphicon glyphicon-folder-open'></span> Seleccionar"});
 
-
-
-
 	llenar_clima()
 });
 
@@ -131,9 +193,9 @@ function llenar_tabla(){
 			            data[2+i],
 			            data[3+i],
 			            data[4+i],
-			            data[5+i],
+			            // data[5+i],
 			            data[6+i],
-			            data[7+i],
+			            // data[7+i],
 			            data[8+i],
 			            data[9+i],
 			            data[10+i],
