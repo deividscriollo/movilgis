@@ -1,4 +1,6 @@
 $(function(){
+	$("#txt_12, #txt_13").TouchSpin({min: 0,max: 50,step: 1,boostat: 1,maxboostedstep: 1});
+    $("#txt_14").rating();
 	$("#txt_x").jfilestyle({buttonText: "<span class='glyphicon glyphicon-folder-open'></span> Seleccionar"});
 	var table=$('#tabla-info').dataTable( {
         language: {
@@ -104,11 +106,15 @@ $(function(){
 		},
         submitHandler: function(form) {
         	llenar_tabla();
+        	var img=$('#txt_x').val();
+        	var forms=($(form).serialize());
         	$.ajax({
 	    		url: 'app.php',
 	    		type: 'post',
 	    		dataType:'json',
-	    		data: $(form).serialize(),
+	    		data: new FormData(form),
+	    		processData: false,
+      			contentType: false,
 	    		success: function (data) {
 	    			llenar_tabla();
 	    			if (data[0]==1) {
@@ -141,8 +147,7 @@ $(function(){
 	llenar_clima();
 	$('#map').height();
 	$('#btn_mapa').click(function(){
-		// console.log('test');
-		
+		// console.log('test');		
 		mapa();
 		$('#myModal-map').modal('show');
 	});
@@ -166,8 +171,8 @@ function llenar_tabla(){
 			            data[3+i],
 			            data[4+i],
 			            // data[5+i],
-			            data[6+i],
-			            // data[7+i],
+			            estrellas(data[6+i]),
+			            // data[7+i],			            
 			            data[8+i],
 			            data[9+i],
 			            data[10+i],
@@ -179,6 +184,13 @@ function llenar_tabla(){
     		}
     	});
     }
+function estrellas(num){
+	var acu='';
+	for (var i = 0; i < num; i++) {
+		acu=acu+'<i class="pe-7s-star text-warning"></i>';
+	}
+	return acu;
+}
 function editar(id){
 	var fulldata=buscar_data(id);
 	$('#myModal').modal('show');

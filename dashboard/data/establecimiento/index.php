@@ -21,7 +21,7 @@ if(!isset($_SESSION))
     <title>Home - Admin</title>
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" ew-->
+    <link rel="shortcut icon" type="image/ico" href="favicon.ico">
 
     <!--Vendor styles -->
     <link rel="stylesheet" href="../../vendor/fontawesome/css/font-awesome.css" />
@@ -31,6 +31,8 @@ if(!isset($_SESSION))
     <link rel="stylesheet" href="../../vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.css" />
     <link rel="stylesheet" href="../../vendor/alert/sweetalert.css" />
     <link rel="stylesheet" href="../../vendor/xeditable/bootstrap3-editable/css/bootstrap-editable.css" />
+    <link rel="stylesheet" href="../../vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" />
+    <link rel="stylesheet" href="../../vendor/bootstrap-star-rating/css/star-rating.css" />
     <!-- App styles -->
     <link rel="stylesheet" href="../../fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="../../fonts/pe-icon-7-stroke/css/helper.css" />
@@ -148,16 +150,16 @@ if(!isset($_SESSION))
                             <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             <a class="closebox"><i class="fa fa-times"></i></a>
                         </div>
-                        Formulario Lugar turístico / <small>todos los campos marcados con (*) son obligatorios</small>
+                        Formulario Establecimiento / <small>todos los campos marcados con (*) son obligatorios</small>
                     </div>
                     <div class="panel-body">
                         <form class="form-horizontal" id="form-data" enctype='multipart/form-data'>
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-sm-12 control-label">Nombre Lugar turístico (*)</label>
+                                        <label class="col-sm-12 control-label">Nombre Establecimiento (*)</label>
                                         <div class="col-sm-12">
-                                            <input type="text" id="txt_1" name="txt_1" class="form-control" placeholder="Nombre Lugar turístico">
+                                            <input type="text" id="txt_1" name="txt_1" class="form-control" placeholder="Nombre Establecimiento">
                                         </div>
                                     </div>
                                 </div>
@@ -174,6 +176,32 @@ if(!isset($_SESSION))
                                         <label class="col-sm-12 control-label">Dirección (*)</label>
                                         <div class="col-sm-12">
                                             <input type="text" id="txt_3" name="txt_3" class="form-control" placeholder="Dirección">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">Numero Habitaciones</label>
+                                        <div class="col-sm-12">
+                                            <input id="txt_12" type="text"  name="txt_12" placeholder="Numero de habitaciones">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">Numero Plazas</label>
+                                        <div class="col-sm-12">
+                                            <input id="txt_13" type="text"  name="txt_13"  placeholder="Numero plazas">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">Categoría</label>
+                                        <div class="col-sm-12">
+                                            <input id="txt_14" name="txt_14" class="rating" data-min="0" data-max="5" data-step="1" data-size="xs" data-show-clear="false">
                                         </div>
                                     </div>
                                 </div>
@@ -219,19 +247,11 @@ if(!isset($_SESSION))
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label class="col-sm-12 control-label">Clima (*)</label>
-                                        <div class="col-sm-12">
-                                            <select class="form-control m-b" id="sel_8" name="sel_8"></select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-8">                                
                                     <div class="form-group">
                                         <label class="col-sm-12 control-label">Descripción</label>
                                         <div class="col-sm-12">
-                                        <textarea rows="1" cols="50" class="form-control" id="txt_9" name="txt_9" placeholder="Sitio Web"></textarea>
+                                        <textarea rows="1" cols="50" class="form-control" id="txt_9" name="txt_9" placeholder="Descripción Establecimiento"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -241,13 +261,13 @@ if(!isset($_SESSION))
                                      <div class="form-group">
                                         <label class="col-sm-12 control-label">Fotografías</label>
                                         <div class="col-sm-12">
-                                        <input type='file' name='txt_x' id="txt_x" multiple/>
+                                        <input type='file' name='txt_x[]' id="txt_x" multiple/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label class="col-sm-12 control-label">Tipo (*)</label>
+                                        <label class="col-sm-12 control-label">Tipo de Establecimiento(*)</label>
                                         <div class="col-sm-12">
                                             <select class="form-control m-b" id="sel_10" name="sel_10"></select>
                                         </div>
@@ -280,18 +300,18 @@ if(!isset($_SESSION))
                             <a class="showhide"><i class="fa fa-chevron-down"></i></a>
                             <a class="closebox"><i class="fa fa-times"></i></a>
                         </div>
-                        Formulario Lugar turístico / <small>todos los campos marcados con (*) son obligatorios</small>
+                        Formulario Establecimiento / <small>todos los campos marcados con (*) son obligatorios</small>
                     </div>
                     <div class="panel-body" style="display: none;">
                         <table id="tabla-info" class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>Lugar turístico</th>
+                                    <th>Establecimiento</th>
                                     <th>Gerencia/Propietario</th>
                                     <th>Direccion</th>
                                     <th>Teléfono</th>
                                     <th>Email</th>
-                                    <th>Clima</th>
+                                    <th>Categoria</th>
                                     <th>Tipo</th>
                                     <th>PArroquia</th>
                                     <th>Accion</th>
@@ -318,7 +338,7 @@ if(!isset($_SESSION))
                     <table class="table table-bordered table-striped" style="clear: both">
                         <tbody>
                         <tr>
-                            <td width="35%">Lugar turístico</td>
+                            <td width="35%">Establecimiento</td>
                             <td width="65%"><a href="" id="username" class="editable editable-click">superuser</a></td>
                         </tr>
                         </tbody>
@@ -377,17 +397,18 @@ if(!isset($_SESSION))
 <script src="../../vendor/jquery-validation/jquery.validate.min.js"></script>
 <script src="../../vendor/alert/sweetalert.min.js"></script>
 <script src="../../vendor/jQuery-Mask-Plugin/jquery.mask.min.js"></script>
-
-<!-- map scrip -->
+<script src="../../vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+<script src="../../vendor/bootstrap-star-rating/js/star-rating.min.js"></script>
 <script src="http://openlayers.org/en/v3.9.0/build/ol.js"></script>
 <script src="http://openlayers.org/en/v3.4.0/resources/example-behaviour.js"></script>
+
+
 
 <!-- App scripts -->
 <script src="../../scripts/homer.js"></script>
 <script src="../../scripts/charts.js"></script>
 <script src="../../scripts/jquery-filestyle.min.js"></script>
 
-<!-- personal script -->
 <script src="app.js"></script>
 </body>
 

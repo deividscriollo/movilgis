@@ -7,12 +7,10 @@
 	$class=new constante();
 	if (isset($_POST['mostrar_tabla'])) {
 		$resultado = $class->consulta("	SELECT id, upper(nombre), upper(propietario), upper(direccion), telefono, correo, 
-									       sitio_web, 
-									       (SELECT upper(clima) FROM clima WHERE id=id_clima),
-									       descripcion, 
-									       (SELECT upper(tipo) FROM tipo_lugar_turistico WHERE id=id_tipo_lugar_turistico), 
+									       sitio_web,categoria,descripcion, 
+									       (SELECT upper(tipo) FROM tipo_establecimientos WHERE id=tipo_establecimiento), 
 									       (SELECT upper(nom) FROM parroquias WHERE id=id_parroquia)
-										FROM lugar_turistico WHERE lugar_turistico.STADO='1';");
+										FROM establecimientos WHERE establecimientos.STADO='1';");
 		while ($row=$class->fetch_array($resultado)) {	
 			$data[]=$row[1];
 			$data[]=$row[2];
@@ -43,7 +41,7 @@
 		}
 	}
 	if (isset($_POST['mostrar_tipo'])) {
-		$resultado = $class->consulta("SELECT id, upper(tipo) FROM tipo_lugar_turistico WHERE STADO='1';");
+		$resultado = $class->consulta("SELECT id, upper(tipo)  FROM tipo_establecimientos WHERE STADO='1';");
 		print'<option value=""></option>';
 		while ($row=$class->fetch_array($resultado)) {	
 			print'<option value="'.$row[0].'">'.$row[1].'</option>';
@@ -60,21 +58,36 @@
 	if (isset($_POST['btn_guardar'])) {
 		$id=$class->idz();
 		$fecha=$class->fecha_hora();
+		if (isset($_FILES['txt_x'])){
+			$carpeta='img/'.$id;
+			if (!file_exists($carpeta)) {//verificando existencia de directorio
+			    mkdir($carpeta, 0777, true);
+			};
+			for ($i=0; $i < count($_FILES['txt_x']['name']); $i++) { 
+				$id_=$class->idz();
+				$nom=$_FILES['txt_x']['name'][$i];
+				$url_img='img/'.$id.'/'.$nom;
+				move_uploaded_file ($_FILES['txt_x']['tmp_name'][$i], $url_img);  // Subimos el archivo 
+				$class->consulta("INSERT INTO img_lugares_establecimientos VALUES ('$id_', '$id', 'establecimiento', '$url_img', '1', '$fecha');");
+			}		
+		}
 		$acu[0]=1;//no almacenado
-		$resultado = $class->consulta("INSERT INTO lugar_turistico VALUES (	'$id',
+		$resultado = $class->consulta("INSERT INTO establecimientos VALUES (	 '$id',
+																		'$_POST[sel_10]',
 																		'$_POST[txt_1]',
 																		'$_POST[txt_2]',
 																		'$_POST[txt_3]',
 																		'$_POST[txt_4]',
+																		-- '$_POST[txt_5]',
+																		'$_POST[txt_14]',
+																		'$_POST[txt_12]',
+																		'$_POST[txt_13]',
 																		'$_POST[txt_5]',
 																		'$_POST[txt_6]',
 																		'$_POST[txt_7]',
-																		'$_POST[sel_8]',
 																		'$_POST[txt_9]',
-																		'',
-																		'$_POST[sel_10]',
 																		'$_POST[sel_11]',
-																		'1', 
+																		'1',
 																		'$fecha');");
 		if (!$resultado) {
 			$acu[0]=0;//almacenado
@@ -107,7 +120,7 @@
 		}
 	}
 	if (isset($_POST['verificar_existencia_value'])) {
-		$resultado = $class->consulta("SELECT nombre FROM lugar_turistico WHERE upper(NOMBRE)=upper('$_POST[txt_1]') AND STADO='1';");
+		$resultado = $class->consulta("SELECT nombre FROM establecimientos WHERE upper(NOMBRE)=upper('$_POST[txt_1]') AND STADO='1';");
 		$acu='true';
 		if ($class->fetch_array($resultado)>0) {
 			$acu='false';

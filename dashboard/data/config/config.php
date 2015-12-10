@@ -10,6 +10,9 @@ class menu
 {
 	
 	function lateral(){
+		$actual_link = "$_SERVER[REQUEST_URI]";
+		$uri_=explode('/', $actual_link);
+
 		print'
 				<aside id="menu">
 				    <div id="navigation">
@@ -35,19 +38,56 @@ class menu
 				        </div>
 
 				        <ul class="nav" id="side-menu">
-				            <li class="active">
-				                <a href="index-2.html"> <span class="nav-label">Inicio</span></a>
+
+				            <li ';if($uri_[4]=='inicio')print 'class="active"';print'>
+				                <a href="../inicio/">
+				                	<span class="nav-label">Inicio</span>
+				                	<span class="glyphicon glyphicon-home pull-right"></span>
+				                </a>
 				            </li>
-				            <li>
-				                <a href="#"><span class="nav-label">Ingresos</span><span class="fa arrow"></span> </a>
+				            <li ';
+				            	if(
+				            		$uri_[4]=='parroquias'||
+				            		$uri_[4]=='clima'||
+				            		$uri_[4]=='tipo_lugares'||
+				            		$uri_[4]=='lugares_turisticos'||
+				            		$uri_[4]=='tipo_establecimiento'||
+				            		$uri_[4]=='establecimiento'
+				            	){
+				            		print 'class="active"';
+				            	}
+				            	print'>
+				                <a href="#">
+				                	<span class="nav-label">Ingresos</span>
+				                	<span class="fa arrow pull-right"></span>
+				                	<span class="glyphicon glyphicon-list-alt pull-right"></span>
+				                </a>
 				                <ul class="nav nav-second-level">
-				                    <li><a href="../parroquias/">Parroquias</a></li>
-				                    <li><a href="../clima/">Clima</a></li>
-				                    <li><a href="../tipo_lugares">Tipo Lugares Turí..</a></li>
-				                    <li><a href="../lugares_turisticos/">Lugares Turisticos</a></li>				                    
-				                    <li><a href="../tipo_establecimiento/">Tipo de Estable...</a></li>
-				                    <li><a href="../establecimiento/">Establecimientos</a></li>
+				                    <li ';if($uri_[4]=='parroquias')print 'class="active"';print'>
+				                    	<a href="../parroquias/">Parroquias</a>
+				                    	</li>
+				                    <li ';if($uri_[4]=='clima')print 'class="active"';print'>
+				                    	<a href="../clima/">Clima</a>
+				                    </li>
+				                    <li ';if($uri_[4]=='tipo_lugares')print 'class="active"';print'>
+				                    	<a href="../tipo_lugares/">Tipo Lugares Turí..</a>
+				                    </li>
+				                    <li ';if($uri_[4]=='lugares_turisticos')print 'class="active"';print'>
+				                    	<a href="../lugares_turisticos/">Lugares Turisticos</a>
+				                    </li>				               
+				                    <li ';if($uri_[4]=='tipo_establecimiento')print 'class="active"';print'>
+				                    	<a href="../tipo_establecimiento/">Tipo de Estable...</a>
+				                    </li>
+				                    <li ';if($uri_[4]=='establecimiento')print 'class="active"';print'>
+				                    	<a href="../establecimiento/">Establecimientos</a>
+				                    </li>
 				                </ul>
+				            </li>
+				            <li ';if($uri_[4]=='mapa')print 'class="active"';print'>
+				                <a href="../mapa/">
+				                	<span class="nav-label">Mapa</span>
+				                	<span class="glyphicon glyphicon-globe pull-right danger"></span>
+				                </a>
 				            </li>
 				        </ul>
 				    </div>
