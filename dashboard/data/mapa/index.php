@@ -187,6 +187,7 @@ if(!isset($_SESSION))
 <!-- App scripts -->
 <script src="../../scripts/homer.js"></script>
 <script src="../../scripts/charts.js"></script>
+<script src="../../scripts/angular.min.js"></script>
 
 <!-- personal script -->
 <script src="app.js"></script>
