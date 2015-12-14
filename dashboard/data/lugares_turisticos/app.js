@@ -104,11 +104,15 @@ $(function(){
 		},
         submitHandler: function(form) {
         	llenar_tabla();
+        	var img=$('#txt_x').val();
+        	var forms=($(form).serialize());
         	$.ajax({
 	    		url: 'app.php',
 	    		type: 'post',
 	    		dataType:'json',
-	    		data: $(form).serialize(),
+	    		data: new FormData(form),
+	    		processData: false,
+      			contentType: false,
 	    		success: function (data) {
 	    			llenar_tabla();
 	    			if (data[0]==1) {

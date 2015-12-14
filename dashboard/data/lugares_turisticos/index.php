@@ -241,7 +241,7 @@ if(!isset($_SESSION))
                                      <div class="form-group">
                                         <label class="col-sm-12 control-label">Fotografías</label>
                                         <div class="col-sm-12">
-                                        <input type='file' name='txt_x' id="txt_x" multiple/>
+                                        <input type='file' name='txt_x[]' id="txt_x" multiple/>
                                         </div>
                                     </div>
                                 </div>

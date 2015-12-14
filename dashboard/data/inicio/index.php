@@ -34,6 +34,9 @@ if(!isset($_SESSION))
     <link rel="stylesheet" href="../../fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="../../styles/style.css">
 
+    <!-- openlayer map entorno -->
+    <link rel="stylesheet" href="http://openlayers.org/en/v3.9.0/css/ol.css" type="text/css">
+
 </head>
 <body>
 
@@ -130,31 +133,87 @@ if(!isset($_SESSION))
 <!-- Main Wrapper -->
 <div id="wrapper">
 
-    <div class="content animate-panel">
-        <div class="row">
-            <div class="col-lg-12 text-center m-t-md">
-                <h2>
-                    Bienvenidos al,
-                </h2>
+    <div class="content animate-panel" id="map">
+        
+    </div>
+</div>
 
-                <p>
-                    GEOPORTAL DE ATRACTIVOS TURÍSTICOS DE COTACACHI.
-                </p>
+<!-- modal -->
+<div class="modal fade" id="modalinfo" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <div class="hpanel plan-box hyellow">
+                            <div class="panel-body">
+                                <div class="pull-right text-right">
+                                    <div class="btn-group">
+                                        <i class="fa fa-facebook btn btn-default btn-xs"></i>
+                                        <i class="fa fa-twitter btn btn-default btn-xs"></i>
+                                        <i class="fa fa-linkedin btn btn-default btn-xs"></i>
+                                    </div>
+                                </div>
+                                <img alt="logo" class="img-circle m-b m-t-md" src="images/profile.jpg">
+                                <h3><a href="#">Max Simson</a></h3>
+                                <div class="text-muted font-bold m-b-xs">California, LA</div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan.
+                                </p>
+                                <div class="progress m-t-xs full progress-small">
+                                    <div style="width: 65%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="65" role="progressbar" class=" progress-bar progress-bar-success">
+                                        <span class="sr-only">35% Complete (success)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-right border-left">
+                                <section id="map">
+                                    <div id="map1" style="height: 200px"></div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="hpanel hgreen">
+                            <div class="panel-body">
+                                <h3><a href="#">Descripción</a></h3>
+                                <div class="text-muted font-bold m-b-xs">California, LA</div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan.
+                                </p>
+                            </div>
+                            <div class="border-right border-left">
+                                
+                            </div>
+                            <div class="panel-footer contact-footer">
+                                <div class="row">
+                                    <div class="col-md-4 border-right">
+                                        <div class="contact-stat"><span>Projects: </span> <strong>200</strong></div>
+                                    </div>
+                                    <div class="col-md-4 border-right">
+                                        <div class="contact-stat"><span>Messages: </span> <strong>300</strong></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="contact-stat"><span>Views: </span> <strong>400</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lightBoxGallery animate-panel"> 
+                            <img src="../../images/gallery/1s.jpg" class="plan-box hyellow" width="100px" height="100px">
+                            <img src="../../images/gallery/2s.jpg" class="plan-box hyellow" width="100px" height="100px">
+                            <img src="../../images/gallery/3s.jpg" class="plan-box hyellow" width="100px" height="100px">
+                            <img src="../../images/gallery/4s.jpg" class="plan-box hyellow" width="100px" height="100px">
+                            <img src="../../images/gallery/5s.jpg" class="plan-box hyellow" width="100px" height="100px">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <!-- Right sidebar -->
-    <!-- Footer-->
-    <footer class="footer">
-        <span class="pull-right">
-            en desarrollo
-        </span>
-        Company 2015-2016
-    </footer>
-
 </div>
-
 <!-- Vendor scripts -->
 <script src="../../vendor/jquery/dist/jquery.min.js"></script>
 <script src="../../vendor/jquery-ui/jquery-ui.min.js"></script>
@@ -169,11 +228,51 @@ if(!isset($_SESSION))
 <script src="../../vendor/iCheck/icheck.min.js"></script>
 <script src="../../vendor/peity/jquery.peity.min.js"></script>
 <script src="../../vendor/sparkline/index.js"></script>
+<script src="../../vendor/blueimp-gallery/js/jquery.blueimp-gallery.min.js"></script>
+
+
+<!-- map scrip -->
+<script src="http://openlayers.org/en/v3.9.0/build/ol.js"></script>
+<script src="http://openlayers.org/en/v3.4.0/resources/example-behaviour.js"></script>
+
 
 <!-- App scripts -->
 <script src="../../scripts/homer.js"></script>
 <script src="../../scripts/charts.js"></script>
-</body>
+<script src="../../scripts/angular.min.js"></script>
 
-<!-- Mirrored from webapplayers.com/homer_admin-v1.8/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Oct 2015 09:57:42 GMT -->
+<!-- personal script -->
+<script src="app.js"></script>
+</body>
 </html>
+<style type="text/css">
+.Content{
+    height: 100%;
+    background: red
+}
+
+    .Content:before
+    {
+        content: '';
+        height: 100%;
+        float: left;
+    }
+
+.wrapper
+{
+    position: relative;
+    z-index: 1;
+}
+</style>
+<style>
+
+    .lightBoxGallery {
+        text-align: center;
+    }
+
+    .lightBoxGallery a {
+        margin: 5px;
+        display: inline-block;
+    }
+
+</style>
