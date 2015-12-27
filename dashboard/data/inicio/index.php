@@ -132,9 +132,7 @@ if(!isset($_SESSION))
 
 <!-- Main Wrapper -->
 <div id="wrapper">
-
-    <div class="content animate-panel" id="map">
-        
+    <div class="content animate-panel" id="map">        
     </div>
 </div>
 
@@ -145,7 +143,6 @@ if(!isset($_SESSION))
             <div class="color-line"></div>
             <div class="modal-body">
                 <div class="row">
-
                     <div class="col-sm-6">
                         <div class="hpanel plan-box hyellow">
                             <div class="panel-body">

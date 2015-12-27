@@ -2691,6 +2691,15 @@ h6 {
   margin: 1px;
   display: block;
 }
+.blue {
+    color: #2299DD;
+}
+.hellow{
+  color: #D9D900;
+}
+.font-18{
+  font-size: 18px;
+}
 .fullpanel {
   width: 100%;
   height: 100%;

@@ -29,7 +29,8 @@ if(!isset($_SESSION))
     <link rel="stylesheet" href="../../dashboard/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="../../dashboard/fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="../../dashboard/styles/style.css">
-    <link rel="stylesheet" href="http://js.arcgis.com/3.14/esri/css/esri.css">
+    <!-- openlayer map entorno -->
+    <link rel="stylesheet" href="http://openlayers.org/en/v3.9.0/css/ol.css" type="text/css">
 
 </head>
 <body>
@@ -75,39 +76,117 @@ if(!isset($_SESSION))
             <a href="index-2.html">
                 <img src="../../dashboard/images/profile.jpg" class="img-circle m-b" alt="logo">
             </a>
-
             <div class="stats-label text-color">
                 <span class="font-extra-bold font-uppercase"><?php print_r($_SESSION['fulldata'][1]); ?></span>
             </div>
         </div>
-
         <ul class="nav" id="side-menu">
             <li>
-                <a href="index-2.html"> <span class="nav-label">Home</span> </a>
+                <a href="#">
+                    <span class="nav-label">Mapa</span>
+                    <span class="glyphicon glyphicon-map-marker pull-right"></span>
+                </a>
             </li>
-            
+            <li>
+                <a href="#">
+                    <span class="nav-label">Parroquias</span>
+                    <span class="fa arrow pull-right"></span>
+                </a>
+                <ul class="nav nav-second-level" id="menu_parroquias" >
+                    
+                </ul>
+            </li>
+            <ul class="nav nav-second-level">
+                <li>
+                    <a href="../lugares/">
+                        <span class="nav-label">Lugares Turist.</span>
+                        <span class="glyphicon glyphicon-tower pull-right"></span>
+                    </a>
+                </li>                    
+            </ul>
+            <ul class="nav nav-second-level">
+                <li>
+                    <a href="../establecimientos/">
+                        <span class="nav-label">Establecimientos </span>
+                        <span class="glyphicon glyphicon-cutlery pull-right"></span>
+                    </a>                    
+                </li>                    
+            </ul>
         </ul>
     </div>
 </aside>
 
 <!-- Main Wrapper -->
 <div id="wrapper">
-
-<div class="normalheader transition animated fadeIn">
-    <div class="hpanel">
-        <div class="panel-body">
-            <a class="small-header-action" href="#">
-                <div class="clip-header">
-                    <i class="fa fa-arrow-up"></i>
-                </div>
-            </a>            
-            <section id="map">
-                <div id="map1" style="height: 500px"></div>
-            </section>
-        </div>
+    <div class="content animate-panel" id="map">
+        
     </div>
 </div>
+<!-- modal -->
+<div class="modal fade" id="modalinfo" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="modal-body">
+                <div class="row">
 
+                    <div class="col-sm-6">
+                        <div class="hpanel plan-box hyellow">
+                            <div class="panel-body">
+                                <div class="pull-right text-right">
+                                    <div class="btn-group">
+                                        <i class="fa fa-facebook btn btn-default btn-xs"></i>
+                                        <i class="fa fa-twitter btn btn-default btn-xs"></i>
+                                        <i class="fa fa-linkedin btn btn-default btn-xs"></i>
+                                    </div>
+                                </div>
+                                <img alt="logo" class="img-circle m-b m-t-md" src="../../dashboard/images/profile.jpg">
+                                <h3><a href="#" id="element_nombre"></a></h3>
+                                <div class="text-muted font-bold m-b-xs" id="element_propietario"></div>
+                                
+                                <div>
+                                    <span class="glyphicon glyphicon-star hellow font-18" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="border-right border-left">
+                                <section>
+                                    <div id="map1" style="height: 200px"></div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="hpanel hgreen">
+                            <div class="panel-body">
+                                <h3><a href="#">Descripción</a></h3>
+                                <div class="text-muted font-bold m-b-xs" id="element_direccion"></div>
+                                <p id="element_descripcion"></p>
+                            </div>
+                            <div class="border-right border-left">
+                                
+                            </div>
+                            <div class="panel-footer contact-footer">
+                                <div class="row">
+                                    <div class="col-md-4 border-right">
+                                        <div class="contact-stat"><span>Clima: </span> <strong id="element_clima">200</strong></div>
+                                    </div>
+                                    <div class="col-md-4 border-right">
+                                        <div class="contact-stat"><span>Tipo: </span> <strong id="element_tipo">300</strong></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="contact-stat"><span>teléfono: </span> <strong id="element_tele">400</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lightBoxGallery animate-panel" id="element_img"> 
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Vendor scripts -->
@@ -119,7 +198,11 @@ if(!isset($_SESSION))
 <script src="../../dashboard/vendor/iCheck/icheck.min.js"></script>
 <script src="../../dashboard/vendor/sparkline/index.js"></script>
 <script src="../../dashboard/vendor/peity/jquery.peity.min.js"></script>
-<script src="http://js.arcgis.com/3.14/"></script>
+
+<!-- map scrip -->
+<script src="http://openlayers.org/en/v3.9.0/build/ol.js"></script>
+<script src="http://openlayers.org/en/v3.4.0/resources/example-behaviour.js"></script>
+
 <!-- App scripts -->
 <script src="../../dashboard/scripts/homer.js"></script>
 <script src="../../dashboard/scripts/charts.js"></script>

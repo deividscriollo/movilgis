@@ -267,7 +267,7 @@ $(function(){
 		},
 
 		submitHandler: function (form) {
-			var fullname=$('#txt_username').val();
+			var fullname=$('#txt_nombre').val();
 			$.ajax({
 				url: 'app.php',
 				type: 'post',
@@ -285,7 +285,7 @@ $(function(){
 					};
 					if (data[0]==2) {
 						swal({
-						    title: "Lo sentimos! estimado/a "+nombre[0],
+						    title: "Lo sentimos! estimado/a cliente",
 						    text: "Usted no puede iniciar sesión porque aún no activa su cuenta, actívelo para continuar..!",
 						    type: "info",
 						},function (){
@@ -296,7 +296,7 @@ $(function(){
 					};
 					if (data[0]==0) {
 						swal({
-						    title: "Lo sentimos! estimado/a "+nombre[0],
+						    title: "Lo sentimos! estimado/a cliente",
 						    text: "Usuario o contraseña incorrectos, verifíquelo e intente nuevamente.!",
 						    type: "warning",
 						},function (){
