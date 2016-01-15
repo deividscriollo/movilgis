@@ -313,7 +313,7 @@ function mapa(){
 	  var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326'));
 	  $(element).popover('destroy');
 	  popup.setPosition(coordinate);
-	  // the keys are quoted to prevent renaming in ADVANCED_OPTIMIZATIONS mode.
+	  var hdms = ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
 	  $(element).popover({
 	    'placement': 'top',
 	    'animation': false,
@@ -321,7 +321,7 @@ function mapa(){
 	    'content': '<span class="fa fa-check-square-o"></span> ok'
 	  });
 	  $(element).popover('show');
-	  $('#txt_4').val(coordinate);
+	  $('#txt_4').val(hdms);
 	});
 	//mostrar icono
 	

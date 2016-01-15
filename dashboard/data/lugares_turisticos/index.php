@@ -231,7 +231,7 @@ if(!isset($_SESSION))
                                     <div class="form-group">
                                         <label class="col-sm-12 control-label">Descripción</label>
                                         <div class="col-sm-12">
-                                        <textarea rows="1" cols="50" class="form-control" id="txt_9" name="txt_9" placeholder="Sitio Web"></textarea>
+                                        <textarea rows="1" cols="50" class="form-control" id="txt_9" name="txt_9" placeholder="Descripción"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -386,6 +386,8 @@ if(!isset($_SESSION))
 <script src="../../scripts/homer.js"></script>
 <script src="../../scripts/charts.js"></script>
 <script src="../../scripts/jquery-filestyle.min.js"></script>
+<script src="../../scripts/proj4.js"></script>
+
 
 <!-- personal script -->
 <script src="app.js"></script>

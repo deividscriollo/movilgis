@@ -32,6 +32,11 @@ if(!isset($_SESSION))
     <!-- openlayer map entorno -->
     <link rel="stylesheet" href="http://openlayers.org/en/v3.9.0/css/ol.css" type="text/css">
 
+    <!-- map style -->
+    <link rel="stylesheet" href="../../dashboard/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="../../dashboard/leaflet/routing-machine/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="../../dashboard/leaflet/mapzen/leaflet.routing.mapzen.css" />
+
 </head>
 <body>
 
@@ -129,28 +134,21 @@ if(!isset($_SESSION))
             <div class="color-line"></div>
             <div class="modal-body">
                 <div class="row">
-
                     <div class="col-sm-6">
-                        <div class="hpanel plan-box hyellow">
+                        <div class="hpanel">
                             <div class="panel-body">
-                                <div class="pull-right text-right">
-                                    <div class="btn-group">
-                                        <i class="fa fa-facebook btn btn-default btn-xs"></i>
-                                        <i class="fa fa-twitter btn btn-default btn-xs"></i>
-                                        <i class="fa fa-linkedin btn btn-default btn-xs"></i>
-                                    </div>
-                                </div>
-                                <img alt="logo" class="img-circle m-b m-t-md" src="../../dashboard/images/profile.jpg">
+                                <div class="lightBoxGallery animate-panel" id="element_img"></div>
                                 <h3><a href="#" id="element_nombre"></a></h3>
-                                <div class="text-muted font-bold m-b-xs" id="element_propietario"></div>
-                                
-                                <div>
-                                    <span class="glyphicon glyphicon-star hellow font-18" aria-hidden="true"></span>
+                                <div id="element_categoria">
+                                    
                                 </div>
                             </div>
                             <div class="border-right border-left">
                                 <section>
-                                    <div id="map1" style="height: 200px"></div>
+                                    <div id="map1" style="height: 200px">
+                                        
+                                    </div>
+                                    <div id="popup"></div>
                                 </section>
                             </div>
                         </div>
@@ -162,29 +160,94 @@ if(!isset($_SESSION))
                                 <div class="text-muted font-bold m-b-xs" id="element_direccion"></div>
                                 <p id="element_descripcion"></p>
                             </div>
-                            <div class="border-right border-left">
-                                
+                            <div class="alert alert-success">
+                                <i class="fa fa-map-marker"></i> Llegar a este lugar 
+                                <button class="btn btn-info" type="button" id="btn_como_llegar">
+                                    <i class="pe-7s-right-arrow"></i>
+                                </button>
+                            </div>
+                            <div class="alert alert-primary">
+                                <i class="fa fa-globe"></i><a href="" id="element_website" target="_blank">Sitio Web</a>
                             </div>
                             <div class="panel-footer contact-footer">
                                 <div class="row">
-                                    <div class="col-md-4 border-right">
-                                        <div class="contact-stat"><span>Clima: </span> <strong id="element_clima">200</strong></div>
+                                    <div class="col-md-3 border-right">
+                                        <div class="contact-stat" id="element_1"></div>
                                     </div>
-                                    <div class="col-md-4 border-right">
-                                        <div class="contact-stat"><span>Tipo: </span> <strong id="element_tipo">300</strong></div>
+                                    <div class="col-md-3 border-right">
+                                        <div class="contact-stat" id="element_2"></div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="contact-stat"><span>teléfono: </span> <strong id="element_tele">400</strong></div>
+                                    <div class="col-md-3 border-right">
+                                        <div class="contact-stat" id="element_3"></div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="contact-stat" id="element_4"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="lightBoxGallery animate-panel" id="element_img"> 
-                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalmap" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="color-line"></div>
+            <div class="hpanel">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#tab-3">
+                            <i class="fa fa-bicycle"></i>
+                            En Bicicleta 
+                        </a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#tab-4">
+                            <i class="fa fa-automobile"></i>
+                            En Vehiculo
+                        </a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#tab-5">
+                            <i class="fa fa-street-view"></i>
+                            A Pie 
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="tab-3" class="tab-pane active">
+                        <div class="panel-body">
+                            <div id="map2" style="height: 500px"></div>
+                        </div>
+                    </div>
+                    <div id="tab-4" class="tab-pane">
+                        <div class="panel-body">
+                            <strong>Donec quam felis</strong>
+
+                            <p>Thousand unknown plants are noticed by me: when I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms of the insects
+                                and flies, then I feel the presence of the Almighty, who formed us in his own image, and the breath </p>
+
+                            <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite
+                                sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at the present moment; and yet.</p>
+                        </div>
+                    </div>
+                    <div id="tab-5" class="tab-pane">
+                        <div class="panel-body">
+                            <strong>Donec quam felis</strong>
+
+                            <p>Thousand unknown plants are noticed by me: when I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms of the insects
+                                and flies, then I feel the presence of the Almighty, who formed us in his own image, and the breath </p>
+
+                            <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite
+                                sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at the present moment; and yet.</p>
                         </div>
                     </div>
                 </div>
             </div>
+           
         </div>
     </div>
 </div>
@@ -206,8 +269,22 @@ if(!isset($_SESSION))
 <!-- App scripts -->
 <script src="../../dashboard/scripts/homer.js"></script>
 <script src="../../dashboard/scripts/charts.js"></script>
+<script src="../../dashboard/scripts/lockr.js"></script>
 
+<!-- maps scrip-->
+<script src="../../dashboard/leaflet/leaflet.js"></script>
+<script src="https://mapzen.com/tangram/0.4/tangram.min.js"></script>
+<script src="../../dashboard/leaflet/routing-machine/leaflet-routing-machine.js"></script>
+<script src="../../dashboard/leaflet/mapzen/lrm-mapzen.js"></script>
+<script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
 <script src="app.js"></script>
 </body>
 
 </html>
+
+
+<style type="text/css">
+    .popover{
+        width: 300px;
+    }
+</style>

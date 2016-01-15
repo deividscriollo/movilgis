@@ -35,7 +35,6 @@
 											FROM lugar_turistico WHERE ID='$_POST[id]';");
 			while ($row=$class->fetch_array($resultado)) {	
 				$data['nombre']=$row['nombre'];
-				$data['propietario']=$row['propietario'];
 				$data['direccion']=$row['direccion'];
 				$data['telefono']=$row['telefono'];
 				$data['correo']=$row['correo'];
@@ -54,15 +53,17 @@
 		}	
 		if ($_POST['ty']=='establecimiento') {
 			$resultado = $class->consulta("	SELECT upper(nombre) as nombre, upper(propietario), direccion, posicion, telefono, correo,sitio_web, descripcion,
-												categoria, n_hab, n_plazas, categoria,
+												categoria, n_hab, n_plazas,
 												(SELECT tipo FROM tipo_establecimientos WHERE ID=tipo_establecimiento) as tipo,
 												(SELECT nom FROM parroquias WHERE ID=id_parroquia) as parroquia
 											FROM establecimientos WHERE ID='$_POST[id]';");
 			while ($row=$class->fetch_array($resultado)) {	
 				$data['nombre']=$row['nombre'];
-				$data['propietario']=$row['propietario'];
 				$data['direccion']=$row['direccion'];
 				$data['telefono']=$row['telefono'];
+				$data['telefono']=$row['telefono'];
+				$data['hab']=$row['n_hab'];
+				$data['plazas']=$row['n_plazas'];
 				$data['correo']=$row['correo'];
 				$data['sitio_web']=$row['sitio_web'];
 				$data['descripcion']=$row['descripcion'];

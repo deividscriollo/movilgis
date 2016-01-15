@@ -21,7 +21,7 @@ function mapa(){
         lat = parseFloat(pos[0]);
         lon = parseFloat(pos[1]);
         var vec=[lat,lon];
-        geom = new ol.geom.Point(vec);
+        geom = new ol.geom.Point(ol.proj.transform(vec, 'EPSG:4326', 'EPSG:3857'));
         feature = new ol.Feature({
         	geometry: geom,
 			name: 'My Polygon',
@@ -35,13 +35,7 @@ function mapa(){
         style = [
             new ol.style.Style({
                 image: new ol.style.Icon(({
-                    // scale: 1 + rnd,
-                    // rotateWithView: (rnd < 0.9) ? true : false,
-                    // rotation: 360 * rnd * Math.PI / 180,
                     anchor: [0.5, 1],
-                    // anchorXUnits: 'fraction',
-                    // anchorYUnits: 'fraction',
-                    // opacity: rnd,
                     src: icons[sum]
                 }))
             }),
@@ -64,7 +58,7 @@ function mapa(){
 
     var vectorLayer = new ol.layer.Vector({
         source: vectorSource
-    });   
+    });
 
     var map = new ol.Map({
       layers: [new ol.layer.Tile({ source: new ol.source.OSM() }), vectorLayer],
@@ -127,4 +121,8 @@ function mostrar_info(id,ty){
 			vec=data;
 		}
 	});
+}
+function triangular_mapa1(){
+    $('#map1').html(''); 
+
 }

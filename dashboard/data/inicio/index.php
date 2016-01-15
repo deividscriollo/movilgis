@@ -166,9 +166,9 @@ if(!isset($_SESSION))
                                 </div>
                             </div>
                             <div class="border-right border-left">
-                                <section id="map">
+                                <!-- <section id="ma"> -->
                                     <div id="map1" style="height: 200px"></div>
-                                </section>
+                                <!-- </section> -->
                             </div>
                         </div>
                     </div>

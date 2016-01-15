@@ -1,26 +1,116 @@
-// file map
-// por dc
 $(function(){
   mapa();
   llenar_mapa();
   llenar_menu_parroquias();
-  llenarmapa_2();
+  
+  $('#btn_como_llegar').click(function(){
+    var pocision = Lockr.get('posicion');
+    var infodata = Lockr.get('infodata');
+    var lon=pocision[0];
+    var lat=pocision[1];
+    var lonini=geoplugin_longitude();
+    var latini=geoplugin_latitude();
+    trazarruta(lon, lat, lonini, latini);
+  });
 });
-function llenarmapa_2(latlot){
+function trazarruta(lon, lat, lonini, latini){
+    $('#modalinfo').modal('hide');
+    $('#modalmap').modal('show');
+    var map = L.map('map2').setView([lat, lon], 10);
+      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+    //map.setView([41.8758,-87.6189], 16);
+    L.Routing.control({
+      waypoints: [
+        L.latLng(latini,lonini),
+        L.latLng(lat,lon)
+      ]
+    }).addTo(map);
+    // actualizando tamño del mapa
+    setInterval(function(){map.invalidateSize();}, 50); 
+}
+function llenarmapa_2(posicion, ty, title){
   $('#map1').html('');
   var icons = [
         "img/map1.fw.png",
         "img/map2.fw.png"     
-    ];
+  ];
+  if (ty=='lugar_turistico') sum=1;
+  if (ty=='establecimiento') sum=0;
+
+  //fogi
+  var iconFeature = new ol.Feature({
+    geometry: new ol.geom.Point(ol.proj.transform(posicion, 'EPSG:4326', 'EPSG:3857')),
+    name: 'Null Island',
+    population: 4000,
+    rainfall: 500
+  });
+
+  var iconStyle = new ol.style.Style({
+    image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+      anchor: [0.5, 1],
+      src: 'img/map2.fw.png'
+    }))
+  });
+  iconFeature.setStyle(iconStyle);
+  var vectorSource = new ol.source.Vector({
+    features: [iconFeature]
+  });
+  var vectorLayer = new ol.layer.Vector({
+        source: vectorSource
+  });
 
   var map = new ol.Map({
-    layers: [new ol.layer.Tile({ source: new ol.source.OSM() })],
+    layers: [new ol.layer.Tile({ source: new ol.source.OSM() }), vectorLayer],
     target: document.getElementById('map1'),
     view: new ol.View({
-      center: ol.proj.transform([-78.26667,0.3], 'EPSG:4326', 'EPSG:3857'),
+      center: ol.proj.transform(posicion, 'EPSG:4326', 'EPSG:3857'),
       zoom: 13
     })
   });
+  
+
+  var element = document.getElementById('popup');
+
+  var popup = new ol.Overlay({
+    element: element,
+    positioning: 'bottom-center',
+    stopEvent: false
+  });
+  map.addOverlay(popup);
+
+  // display popup on click
+  map.on('click', function(evt) {
+    var feature = map.forEachFeatureAtPixel(evt.pixel,
+        function(feature, layer) {
+          return feature;
+        });
+    if (feature) {
+      popup.setPosition(evt.coordinate);
+
+      $('#popup').popover({
+        'placement': 'top',
+        'html': true,
+        'content': title
+      });
+      $(element).popover('show');
+    } else {
+      $(element).popover('destroy');
+    }
+  });
+
+  // change mouse cursor when over marker
+  map.on('pointermove', function(e) {
+    if (e.dragging) {
+      $(element).popover('destroy');
+      return;
+    }
+    var pixel = map.getEventPixel(e.originalEvent);
+    var hit = map.hasFeatureAtPixel(pixel);
+    map.getTarget().style.cursor = hit ? 'pointer' : '';
+  });
+  setInterval(function(){map.updateSize();}, 50); 
 }
 function mapa(){
   $('#map').html(''); 
@@ -39,12 +129,13 @@ function mapa(){
         lat = parseFloat(pos[0]);
         lon = parseFloat(pos[1]);
         var vec=[lat,lon];
-        geom = new ol.geom.Point(vec);
+        geom = new ol.geom.Point(ol.proj.transform(vec, 'EPSG:4326', 'EPSG:3857'));
         feature = new ol.Feature({
           geometry: geom,
-      name: 'My Polygon',
-      id:mat[0],
-      ty:mat[1]
+          name: 'My Polygon',
+          id:mat[0],
+          ty:mat[1],
+          posicion:vec
         });
         features.push(feature);
         if (mat[1]=='lugar_turistico') sum=1;
@@ -53,13 +144,7 @@ function mapa(){
         style = [
             new ol.style.Style({
                 image: new ol.style.Icon(({
-                    // scale: 1 + rnd,
-                    // rotateWithView: (rnd < 0.9) ? true : false,
-                    // rotation: 360 * rnd * Math.PI / 180,
                     anchor: [0.5, 1],
-                    // anchorXUnits: 'fraction',
-                    // anchorYUnits: 'fraction',
-                    // opacity: rnd,
                     src: icons[sum]
                 }))
             }),
@@ -101,8 +186,8 @@ function mapa(){
     if (feature) {
       var id=feature['C']['id'];
       var ty=feature['C']['ty'];
-
-      mostrar_info(id,ty);
+      var posicion=feature['C']['posicion'];
+      mostrar_info(id,ty,posicion);
     } else {
       $('#modalinfo').modal('hide');
     }
@@ -133,8 +218,7 @@ function llenar_mapa(){
   });
   return vec;
 }
-function mostrar_info(id,ty){
-  console.log(ty);
+function mostrar_info(id,ty,posicion){
   $('#modalinfo').modal('show');
   $.ajax({
     url: 'app.php',
@@ -144,15 +228,37 @@ function mostrar_info(id,ty){
     async:false,
     success: function (data) {
       vec=data;
+      Lockr.set('infodata', vec);
+      Lockr.set('posicion', posicion);
+      llenarmapa_2(posicion, ty, vec['nombre']);
       // descripcion
+      if (ty=='lugar_turistico') {
+        $('#element_1').html('<span>Clima: </span> <strong>'+vec['clima']+'</strong>');
+        $('#element_2').html('<span>Tipo: </span> <strong>'+vec['tipo']+'</strong>');
+        $('#element_3').html('<span>Teléfono: </span> <strong>'+vec['telefono']+'</strong>');
+        $('#element_4').html('<span>parroquia: </span> <strong>'+vec['parroquia']+'</strong>');
+        $('#element_propietario').text(vec['propietario']);
+        $('#element_descripcion').html(vec['descripcion']);
+      }else{        
+        $('#element_1').html('<span>habitaciones: </span> <strong>'+vec['hab']+'</strong>');
+        $('#element_2').html('<span>Parroquia: </span> <strong>'+vec['parroquia']+'</strong>');
+        $('#element_3').html('<span>Tipo: </span> <strong>'+vec['tipo']+'</strong>');
+        $('#element_4').html('<span>Teléfono: </span> <strong>'+vec['telefono']+'</strong>');
+        $('#element_propietario').text(vec['propietario']);
+        
+        var acumestrella='';
+        for (var i = 0; i < parseInt(vec['categoria']) ;i++) {
+          acumestrella=acumestrella+'<span class="glyphicon glyphicon-star hellow font-18" aria-hidden="true"></span>';
+        }        
+      };
+
       $('#element_direccion').text(vec['direccion']);
       $('#element_nombre').text(vec['nombre']);
-      $('#element_clima').text(vec['clima']);
-      $('#element_tipo').text(vec['tipo']);
-      $('#element_tel').text(vec['tel']);
-      $('#element_propietario').text(vec['propietario']);
-      $('#element_descripcion').text(vec['descripcion']);
-
+      $('#element_categoria').html(acumestrella);
+      $('#element_website').attr('href', vec['sitio_web']);
+      $('#element_website').html(vec['sitio_web']);
+      $('#element_descripcion').html(vec['descripcion']);
+      
       //fotografias
       img_vec=vec['fotos'];
       var acu='';
@@ -168,8 +274,7 @@ function mostrar_info(id,ty){
           break;
         };
       }
-      $('#element_img').html(acu);
-      
+      $('#element_img').html(acu);      
     }
   });
 }
@@ -181,8 +286,7 @@ function llenar_menu_parroquias(){
     success: function (data) {
       $('#menu_parroquias').html(data)
     }
-  });
-  
+  });  
 }
 function parroquia_select(id){
   alert(id)
