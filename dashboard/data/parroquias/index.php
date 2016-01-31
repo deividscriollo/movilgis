@@ -34,6 +34,7 @@ if(!isset($_SESSION))
     <!-- App styles -->
     <link rel="stylesheet" href="../../fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="../../fonts/pe-icon-7-stroke/css/helper.css" />
+    <link rel="stylesheet" href="../../styles/jquery-filestyle.min.css">
     <link rel="stylesheet" href="../../styles/style.css">
 
 </head>
@@ -133,17 +134,17 @@ if(!isset($_SESSION))
 <div id="wrapper">
 
     <div class="content animate-panel">
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="hpanel">
-                    <div class="panel-heading">
-                        <div class="panel-tools">
-                            <a class="showhide"><i class="fa fa-chevron-up"></i></a>
-                            <a class="closebox"><i class="fa fa-times"></i></a>
-                        </div>
-                        Formulario Parroquia
+        <div class="row"> 
+            <div class="col-sm-12">
+            <div class="hpanel">
+                <div class="panel-heading">
+                    <div class="panel-tools">
+                        <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                     </div>
-                    <div class="panel-body">
+                    Formulario Parroquia
+                </div>
+                <div class="panel-body">
+                    <div class="col-sm-4">
                         <form class="form-horizontal" id="form-data">
                             <div class="form-group">
                                 <label class="col-sm-12 control-label">Nombre Parroquia</label>
@@ -159,20 +160,87 @@ if(!isset($_SESSION))
                             </div>
                         </form>
                     </div>
+                    <div class="col-sm-8">
+                        <table id="tabla-info" class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Nro</th>
+                                    <th>Parroquia</th>
+                                    <th>Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-8">
-                <table id="tabla-info" class="table table-striped table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Nro</th>
-                            <th>Parroquia</th>
-                            <th>Accion</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+            </div>          
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="hpanel">
+                    <div class="panel-heading">
+                        <div class="panel-tools">
+                            <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                        </div>
+                        Formulario Lugares de la Zona
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-sm-4">
+                            <form class="form-horizontal" id="form-data2">
+                                <div class="form-group">
+                                    <label class="col-sm-12 control-label">Nombre lugar</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" id="txt_1" name="txt_1" class="form-control" placeholder="Nombre lugar">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-12 control-label">Parroquia</label>
+                                    <div class="col-sm-12">
+                                        <select class="form-control m-b" name="sel_1" id="sel_1">
+                                            <option value=""></option>
+                                            <option>option 1</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-12 control-label">Foto</label>
+                                    <div class="col-sm-12">
+                                        <input type='file' name='txt_x' id="txt_x" accept="image/*" capture="camera"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-12 control-label">Descripción</label>
+                                    <div class="col-sm-12">
+                                        <textarea rows="1" cols="50" class="form-control" id="txt_2" name="txt_2" placeholder="Descripción"></textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button class="btn w-xs btn-info" type="submit" name="btn_guardar_lugares_zona">Guardar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-sm-8">
+                            <table id="tabla-info2" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Nro</th>
+                                        <th>Nombre Zona</th>
+                                        <th>Parroquia</th>
+                                        <th>Accion</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -231,6 +299,7 @@ if(!isset($_SESSION))
 <script src="../../vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 <script src="../../vendor/jquery-validation/jquery.validate.min.js"></script>
 <script src="../../vendor/alert/sweetalert.min.js"></script>
+<script src="../../scripts/jquery-filestyle.min.js"></script>
 
 <!-- App scripts -->
 <script src="../../scripts/homer.js"></script>

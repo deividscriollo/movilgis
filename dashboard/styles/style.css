@@ -328,7 +328,12 @@
   bottom: 0;
 }
 .modal-dialog {
-  margin-top: 80px;
+  margin-top: 40px;
+  width: 95%; /* desired relative width */
+  left: (100%-width)/2;
+  /* place center */
+  margin-left:auto;
+  margin-right:auto; 
 }
 .modal-title {
   font-size: 30px;
@@ -339,7 +344,7 @@
   background: #f7f9fa;
 }
 .modal-body {
-  padding: 20px 30px;
+  /*padding: 5px 10px;*/
 }
 .modal-header small {
   color: #9d9fa2;

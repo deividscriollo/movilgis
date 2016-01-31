@@ -266,7 +266,7 @@ function mostrar_info(id,ty,posicion){
       if (ty=='lugar_turistico') {
         lugar='lugares_turisticos';
       };
-      for (var i = 0; i < img_vec.length; i++) {
+      for (var i = 0; i < 3; i++) {
         var ulr_='<img src="../../dashboard/data/'+lugar+'/'+img_vec[i]+'" class="plan-box hyellow" width="100px" height="100px">';
         acu= acu+ulr_;
         

@@ -5,6 +5,7 @@
 	}
 	require('../../../admin/class.php');
 	$class=new constante();
+	
 	if (isset($_POST['mostrar_tabla'])) {
 		$resultado = $class->consulta("SELECT id, upper(nom) FROM parroquias WHERE STADO='1';");
 		while ($row=$class->fetch_array($resultado)) {	
@@ -20,11 +21,43 @@
 		}
 		print_r(json_encode($data));
 	}
+	if (isset($_POST['mostrar_tabla2'])) {
+		$resultado = $class->consulta("SELECT L.id, lugar, upper(nom)as parroquia FROM parroquias P, lugar_zona L WHERE L.STADO='1' AND id_parroquia=P.ID;");
+		while ($row=$class->fetch_array($resultado)) {	
+			$proceso='<button type="button" class="btn btn-outline btn-info btn-xs" onclick=editar("'.$row[0].'")>
+						<i class="fa fa-check-square-o"></i>
+					</button>
+                    <button type="button" class="btn btn-outline btn-warning2 btn-xs" onclick=eliminar("'.$row[0].'")>
+                    	<i class="fa fa-minus-square"></i>
+                    </button>
+					';
+			$data[]= array($row[1],$row[2],$proceso);
+		}
+		print_r(json_encode($data));
+	}
 	if (isset($_POST['btn_guardar'])) {
 		$id=$class->idz();
 		$fecha=$class->fecha_hora();
 		$acu[0]=1;//no almacenado
 		$resultado = $class->consulta("INSERT INTO parroquias VALUES ('$id', '$_POST[txt_1]', '1', '$fecha');");
+		if (!$resultado) {
+			$acu[0]=0;//almacenado
+		}
+		print_r(json_encode($acu));	
+	}
+	
+	if (isset($_POST['btn_guardar_lugares_zona'])) {
+		$id=$class->idz();
+		$fecha=$class->fecha_hora();
+		$acu[0]=1;//no almacenado
+		$carpeta='img/'.$id;
+		if (!file_exists($carpeta)) {//verificando existencia de directorio
+		    mkdir($carpeta, 0777, true);
+		};
+		$nom=$_FILES['txt_x']['name'];
+		$url_img='img/'.$id.'/'.$nom;
+		move_uploaded_file ($_FILES['txt_x']['tmp_name'], $url_img);  // Subimos el archivo 
+		$resultado = $class->consulta("INSERT INTO lugar_zona VALUES ('$id', '$_POST[sel_1]', '$_POST[txt_1]','$url_img','$_POST[txt_2]','1', '$fecha');");
 		if (!$resultado) {
 			$acu[0]=0;//almacenado
 		}
@@ -55,4 +88,13 @@
 			$acu[0]=0;// actualizado
 		}
 	}
+
+	if (isset($_POST['mostrar_parroquia'])) {
+		$resultado = $class->consulta("SELECT id, upper(nom) FROM parroquias WHERE STADO='1';");
+		print'<option value=""></option>';
+		while ($row=$class->fetch_array($resultado)) {	
+			print'<option value="'.$row[0].'">'.$row[1].'</option>';
+		}
+	}
+
 ?>

@@ -129,12 +129,12 @@ if(!isset($_SESSION))
 </div>
 <!-- modal -->
 <div class="modal fade" id="modalinfo" tabindex="-1" role="dialog"  aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="color-line"></div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <div class="hpanel">
                             <div class="panel-body">
                                 <div class="lightBoxGallery animate-panel" id="element_img"></div>
@@ -153,7 +153,7 @@ if(!isset($_SESSION))
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-5">
                         <div class="hpanel hgreen">
                             <div class="panel-body">
                                 <h3><a href="#">Descripción</a></h3>
@@ -184,6 +184,33 @@ if(!isset($_SESSION))
                                         <div class="contact-stat" id="element_4"></div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="hpanel hblue">
+                            <div class="panel-body">
+                            hola men
+                            </div>
+                        </div>
+                        <div class="hpanel hyellow">
+                            <div class="panel-body">
+                            hola men
+                            </div>
+                        </div>
+                        <div class="hpanel hviolet">
+                            <div class="panel-body">
+                            hola men
+                            </div>
+                        </div>
+                        <div class="hpanel horange">
+                            <div class="panel-body">
+                            hola men
+                            </div>
+                        </div>
+                        <div class="hpanel hred">
+                            <div class="panel-body">
+                            hola men
                             </div>
                         </div>
                     </div>
