@@ -1,4 +1,4 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}(g.L || (g.L = {})).Routing = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),(f.L||(f.L={})).Routing=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 function corslite(url, callback, cors) {
     var sent = false;
 
@@ -1512,52 +1512,49 @@ if (typeof module !== undefined) module.exports = polyline;
 	L.Routing.Localization = {
 		'en': {
 			directions: {
-				N: 'north',
-				NE: 'northeast',
-				E: 'east',
-				SE: 'southeast',
-				S: 'south',
-				SW: 'southwest',
-				W: 'west',
-				NW: 'northwest'
+				N: 'norte',
+				NE: 'noreste',
+				E: 'este',
+				SE: 'sureste',
+				S: 'sur',
+				SW: 'suroeste',
+				W: 'oeste',
+				NW: 'noroeste'
 			},
 			instructions: {
 				// instruction, postfix if the road is named
 				'Head':
-					['Head {dir}', ' on {road}'],
+					['Derecho {dir}', ' sobre {road}'],
 				'Continue':
-					['Continue {dir}', ' on {road}'],
+					['Continuar {dir}', ' en {road}'],
 				'SlightRight':
-					['Slight right', ' onto {road}'],
+					['Leve giro a la derecha', ' sobre {road}'],
 				'Right':
-					['Right', ' onto {road}'],
+					['Derecha', ' sobre {road}'],
 				'SharpRight':
-					['Sharp right', ' onto {road}'],
+					['Giro pronunciado a la derecha', ' sobre {road}'],
 				'TurnAround':
-					['Turn around'],
+					['Dar vuelta'],
 				'SharpLeft':
-					['Sharp left', ' onto {road}'],
+					['Giro pronunciado a la izquierda', ' sobre {road}'],
 				'Left':
-					['Left', ' onto {road}'],
+					['Izquierda', ' en {road}'],
 				'SlightLeft':
-					['Slight left', ' onto {road}'],
+					['Leve giro a la izquierda', ' en {road}'],
 				'WaypointReached':
-					['Waypoint reached'],
+					['Llegó a un punto del camino'],
 				'Roundabout':
-					['Take the {exitStr} exit in the roundabout', ' onto {road}'],
+					['Tomar {exitStr} salida en la rotonda', ' en {road}'],
 				'DestinationReached':
-					['Destination reached'],
+					['Llegada a destino'],
 			},
 			formatOrder: function(n) {
-				var i = n % 10 - 1,
-				suffix = ['st', 'nd', 'rd'];
-
-				return suffix[i] ? n + suffix[i] : n + 'th';
+				return n + 'º';
 			},
 			ui: {
-				startPlaceholder: 'Start',
+				startPlaceholder: 'Inicio',
 				viaPlaceholder: 'Via {viaNumber}',
-				endPlaceholder: 'End'
+				endPlaceholder: 'Destino'
 			}
 		},
 
@@ -1898,6 +1895,103 @@ if (typeof module !== undefined) module.exports = polyline;
 				endPlaceholder: 'Destino'
 			}
 		},
+		'sk': {
+			directions: {
+				N: 'sever',
+				NE: 'serverovýchod',
+				E: 'východ',
+				SE: 'juhovýchod',
+				S: 'juh',
+				SW: 'juhozápad',
+				W: 'západ',
+				NW: 'serverozápad'
+			},
+			instructions: {
+				// instruction, postfix if the road is named
+				'Head':
+					['Mierte na {dir}', ' na {road}'],
+				'Continue':
+					['Pokračujte na {dir}', ' na {road}'],
+				'SlightRight':
+					['Mierne doprava', ' na {road}'],
+				'Right':
+					['Doprava', ' na {road}'],
+				'SharpRight':
+					['Prudko doprava', ' na {road}'],
+				'TurnAround':
+					['Otočte sa'],
+				'SharpLeft':
+					['Prudko doľava', ' na {road}'],
+				'Left':
+					['Doľava', ' na {road}'],
+				'SlightLeft':
+					['Mierne doľava', ' na {road}'],
+				'WaypointReached':
+					['Ste v prejazdovom bode.'],
+				'Roundabout':
+					['Odbočte na {exitStr} výjazde', ' na {road}'],
+				'DestinationReached':
+					['Prišli ste do cieľa.'],
+			},
+			formatOrder: function(n) {
+				var i = n % 10 - 1,
+				suffix = ['.', '.', '.'];
+
+				return suffix[i] ? n + suffix[i] : n + '.';
+			},
+			ui: {
+				startPlaceholder: 'Začiatok',
+				viaPlaceholder: 'Cez {viaNumber}',
+				endPlaceholder: 'Koniec'
+			}
+		},
+		'el': {
+			directions: {
+				N: 'βόρεια',
+				NE: 'βορειοανατολικά',
+				E: 'ανατολικά',
+				SE: 'νοτιοανατολικά',
+				S: 'νότια',
+				SW: 'νοτιοδυτικά',
+				W: 'δυτικά',
+				NW: 'βορειοδυτικά'
+			},
+			instructions: {
+				// instruction, postfix if the road is named
+				'Head':
+					['Κατευθυνθείτε {dir}', ' στην {road}'],
+				'Continue':
+					['Συνεχίστε {dir}', ' στην {road}'],
+				'SlightRight':
+					['Ελαφρώς δεξιά', ' στην {road}'],
+				'Right':
+					['Δεξιά', ' στην {road}'],
+				'SharpRight':
+					['Απότομη δεξιά στροφή', ' στην {road}'],
+				'TurnAround':
+					['Κάντε αναστροφή'],
+				'SharpLeft':
+					['Απότομη αριστερή στροφή', ' στην {road}'],
+				'Left':
+					['Αριστερά', ' στην {road}'],
+				'SlightLeft':
+					['Ελαφρώς αριστερά', ' στην {road}'],
+				'WaypointReached':
+					['Φτάσατε στο σημείο αναφοράς'],
+				'Roundabout':
+					['Ακολουθήστε την {exitStr} έξοδο στο κυκλικό κόμβο', ' στην {road}'],
+				'DestinationReached':
+					['Φτάσατε στον προορισμό σας'],
+			},
+			formatOrder: function(n) {
+				return n + 'º';
+			},
+			ui: {
+				startPlaceholder: 'Αφετηρία',
+				viaPlaceholder: 'μέσω {viaNumber}',
+				endPlaceholder: 'Προορισμός'
+			}
+		}
 	};
 
 	module.exports = L.Routing;
@@ -1921,9 +2015,10 @@ if (typeof module !== undefined) module.exports = polyline;
 
 	L.Routing.OSRM = L.Class.extend({
 		options: {
-			serviceUrl: '//router.project-osrm.org/viaroute',
+			serviceUrl: 'https://router.project-osrm.org/viaroute',
 			timeout: 30 * 1000,
-			routingOptions: {}
+			routingOptions: {},
+			polylinePrecision: 6
 		},
 
 		initialize: function(options) {
@@ -2049,7 +2144,7 @@ if (typeof module !== undefined) module.exports = polyline;
 		},
 
 		_decodePolyline: function(routeGeometry) {
-			var cs = polyline.decode(routeGeometry, 6),
+			var cs = polyline.decode(routeGeometry, this.options.polylinePrecision),
 				result = new Array(cs.length),
 				i;
 			for (i = cs.length - 1; i >= 0; i--) {

@@ -78,7 +78,7 @@ if(!isset($_SESSION))
 <aside id="menu">
     <div id="navigation">
         <div class="profile-picture">
-            <a href="index-2.html">
+            <a href="perfil.php">
                 <img src="../../dashboard/images/profile.jpg" class="img-circle m-b" alt="logo">
             </a>
             <div class="stats-label text-color">
@@ -87,36 +87,29 @@ if(!isset($_SESSION))
         </div>
         <ul class="nav" id="side-menu">
             <li>
-                <a href="#">
-                    <span class="nav-label">Mapa</span>
-                    <span class="glyphicon glyphicon-map-marker pull-right"></span>
+                <a href="rutas.php">
+                    <span class="nav-label">Rutas</span>
+                    <span class="fa fa-location-arrow pull-right"></span>
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <span class="nav-label">Parroquias</span>
-                    <span class="fa arrow pull-right"></span>
+                <a href="index.php">
+                    <span class="nav-label">Mapa</span>
+                    <span class="fa fa-map pull-right"></span>
                 </a>
-                <ul class="nav nav-second-level" id="menu_parroquias" >
-                    
-                </ul>
             </li>
-            <ul class="nav nav-second-level">
-                <li>
-                    <a href="../lugares/">
-                        <span class="nav-label">Lugares Turist.</span>
-                        <span class="glyphicon glyphicon-tower pull-right"></span>
-                    </a>
-                </li>                    
-            </ul>
-            <ul class="nav nav-second-level">
-                <li>
-                    <a href="../establecimientos/">
-                        <span class="nav-label">Establecimientos </span>
-                        <span class="glyphicon glyphicon-cutlery pull-right"></span>
-                    </a>                    
-                </li>                    
-            </ul>
+            <li>
+                <a href="perfil.php">
+                    <span class="nav-label">Mi Perfil</span>
+                    <span class="fa fa-user-plus pull-right"></span>
+                </a>
+            </li>
+            <li>
+                <a href="exit.php">
+                    <span class="nav-label">Salir</span>
+                    <span class="fa fa-times-circle pull-right"></span>
+                </a>
+            </li>
         </ul>
     </div>
 </aside>
@@ -190,27 +183,27 @@ if(!isset($_SESSION))
                     <div class="col-sm-3">
                         <div class="hpanel hblue">
                             <div class="panel-body">
-                            hola men
+                            procesando nuevo dato
                             </div>
                         </div>
                         <div class="hpanel hyellow">
                             <div class="panel-body">
-                            hola men
+                            procesando nuevo dato
                             </div>
                         </div>
                         <div class="hpanel hviolet">
                             <div class="panel-body">
-                            hola men
+                            procesando nuevo dato
                             </div>
                         </div>
                         <div class="hpanel horange">
                             <div class="panel-body">
-                            hola men
+                            procesando nuevo dato
                             </div>
                         </div>
                         <div class="hpanel hred">
                             <div class="panel-body">
-                            hola men
+                            procesando nuevo dato
                             </div>
                         </div>
                     </div>
@@ -246,8 +239,9 @@ if(!isset($_SESSION))
                 </ul>
                 <div class="tab-content">
                     <div id="tab-3" class="tab-pane active">
-                        <div class="panel-body">
-                            <div id="map2" style="height: 500px"></div>
+                        <div class="panel-body" id="viemap">
+                            
+
                         </div>
                     </div>
                     <div id="tab-4" class="tab-pane">

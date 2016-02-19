@@ -37,7 +37,7 @@
 	}
 	if (isset($_POST['btn-acceso'])) {
 		$acu[0]=0;
-		$resultado = $class->consulta("SELECT T.* FROM cliente.acceso_turista AT, cliente.turista T WHERE AT.CORREO='$_POST[txt_nombre]' AND PASSWORD=md5('$_POST[txt_pass]') AND AT.STADO='1'");
+		$resultado = $class->consulta("SELECT T.* FROM cliente.acceso_turista AT, cliente.turista T WHERE T.ID=ID_TURISTA AND AT.CORREO='$_POST[txt_nombre]' AND PASSWORD=md5('$_POST[txt_pass]') AND AT.STADO='1'");
 		while ($row=$class->fetch_array($resultado)) {	
 			$acu[0]=1;
 			$_SESSION['fulldata'][0]=$row[0];
@@ -83,6 +83,4 @@
 		}
 		print_r(json_encode($acu));
 	}
-	
-
 ?>

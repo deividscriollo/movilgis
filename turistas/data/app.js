@@ -10,13 +10,15 @@ $(function(){
     var lat=pocision[1];
     var lonini=geoplugin_longitude();
     var latini=geoplugin_latitude();
+    $('#viemap').html('');
+    document.getElementById('viemap').innerHTML = "<div id='map2' style='height: 500px'></div>";
     trazarruta(lon, lat, lonini, latini);
   });
 });
 function trazarruta(lon, lat, lonini, latini){
     $('#modalinfo').modal('hide');
     $('#modalmap').modal('show');
-    var map = L.map('map2').setView([lat, lon], 10);
+    var map = L.map('map2');
       L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
@@ -27,6 +29,7 @@ function trazarruta(lon, lat, lonini, latini){
         L.latLng(lat,lon)
       ]
     }).addTo(map);
+    map.setView([lat, lon], 9);
     // actualizando tamño del mapa
     setInterval(function(){map.invalidateSize();}, 50); 
 }

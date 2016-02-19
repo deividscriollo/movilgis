@@ -8,6 +8,41 @@
 		}
 		print $_GET['callback'] . '('.json_encode($data).')';
 	}
+	if (isset($_GET['origen_fin_ruta'])) {
+		$resultado = $class->consulta("	SELECT 
+											id, nombre, propietario, direccion, posicion, telefono, correo, 
+										    sitio_web, descripcion
+										FROM lugar_turistico WHERE id='$_GET[id]';");
+		while ($row=$class->fetch_array($resultado)) {	
+			$data[] = array(
+							'id' => $row['id'],
+			 				'nombre' => $row['nombre'],
+			 				'direccion' => $row['direccion'],
+			 				'posicion' => $row['posicion'],
+			 				'telefono' => $row['telefono'],
+			 				'correo' => $row['correo'],
+			 				'sitio_web' => $row['sitio_web'],
+			 				'descripcion' => $row['descripcion']
+			 				);	
+		}
+		$resultado = $class->consulta("	SELECT 
+											id, nombre, propietario, direccion, posicion, telefono, correo, 
+										    sitio_web, descripcion
+										FROM establecimientos WHERE id='$_GET[id]';");
+		while ($row=$class->fetch_array($resultado)) {	
+			$data[] = array(
+							'id' => $row['id'],
+			 				'nombre' => $row['nombre'],
+			 				'direccion' => $row['direccion'],
+			 				'posicion' => $row['posicion'],
+			 				'telefono' => $row['telefono'],
+			 				'correo' => $row['correo'],
+			 				'sitio_web' => $row['sitio_web'],
+			 				'descripcion' => $row['descripcion']
+			 				);	
+		}
+		print $_GET['callback'] . '('.json_encode($data).')';
+	}
 	if (isset($_GET['llenar_lugares_turisticos'])) {
 		$resultado = $class->consulta("	SELECT id, nombre, propietario, direccion, telefono, correo,sitio_web, descripcion,
 											(SELECT tipo FROM tipo_lugar_turistico WHERE ID=id_tipo_lugar_turistico) as tipo,
